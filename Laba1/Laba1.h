@@ -10,8 +10,8 @@ void outstring(struct company*, int);
 int main(void);
 
 struct company {
-	char name[256];
-	int products;
-	unsigned long year_money;
-	float market_part;
+	char name[256]{};
+	int products{};
+	unsigned long year_money{};
+	float market_part{};
 };
