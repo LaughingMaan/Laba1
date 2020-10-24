@@ -46,7 +46,7 @@
 		outstring(my_array, counter);
 		return EXIT_SUCCESS;
 	}
-
+	//@ Метод описывающий вывод результата на экран
 	void outstring(company * my_company, int count) {
 		int max_size = 82;
 		int current_size = 0;
