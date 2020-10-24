@@ -28,8 +28,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\Downloads\Вариант 1.doc">
+    <CopyFileToFolders Include="..\..\..\..\Downloads\Вариант 1.doc">
       <Filter>Задание</Filter>
-    </None>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

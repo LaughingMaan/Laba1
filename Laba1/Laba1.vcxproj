@@ -161,7 +161,9 @@
     <ClInclude Include="Laba1.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\Downloads\Вариант 1.doc" />
+    <CopyFileToFolders Include="..\..\..\..\Downloads\Вариант 1.doc">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -43,6 +43,7 @@
 		
 		outstring(company_array, counter);
 		delete[] company_array;
+		system("pause");
 		return EXIT_SUCCESS;
 	}
 	// Метод описывающий вывод результата на экран
