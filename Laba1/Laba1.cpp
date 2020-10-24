@@ -8,45 +8,44 @@
 //   4. В окне "Список ошибок" можно просматривать ошибки.
 //   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
 //   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <clocale>
-	struct company {
-		char name[256];
-		int products;
-		unsigned long year_money;
-		float market_part;
-	}; struct company my_array[10];
-	void outstring(struct company*, int);
+#include "Laba1.h"
+//#include <vld.h> профайлер Visual Leak Detector
+
+	// Точка входа в программу
 	int main(void) {
+
 		setlocale(LC_ALL, "Russian");
 		short counter = 0;
-		float temp;
 		company temp_comp;
-		for (int i = 0; i < 10; i++) {
-			printf_s("%d %s", i, "Введите имя компании, количество продуктов, годовой объем продажи\n и долю рынка\n>");
-			scanf_s("%s", my_array[i].name, (unsigned)_countof(my_array[i].name));
-			if (!strcmp(my_array[i].name, "***")) break;
-			scanf_s("%d%lu%f", &my_array[i].products, &my_array[i].year_money, &temp);
-			my_array[i].market_part = temp;
-			counter++;
+		printf_s("%s", "Введите количество записей > ");
+		scanf_s("%hd", &counter);
+		printf_s("%c", '\n');
+		company *company_array;
+		company_array = new company[counter];
+
+		for (short i = 0; i < counter; i++) {
+			printf_s("%d %s", i + 1, "Введите имя компании, количество продуктов, годовой объем продажи\n и долю рынка\n>");
+			scanf_s("%s", company_array[i].name, (unsigned)_countof(company_array[i].name));
+			scanf_s("%d%lu%f", &company_array[i].products, &company_array[i].year_money, &company_array[i].market_part);
+
 		}
-		outstring(my_array, counter);
-		
-		for (int i = counter - 1; i >= 0; i--) {
-			for (int j = 0; j < i; j++) {
-				if (strcmp(my_array[j].name, my_array[j + 1].name) > 0) {
-					temp_comp = my_array[j];
-					my_array[j] = my_array[j + 1];
-					my_array[j + 1] = temp_comp;
+
+		outstring(company_array, counter);
+			for (int i = counter - 1; i >= 0; i--) {
+				for (int j = 0; j < i; j++) {
+					if (strcmp(company_array[j].name, company_array[j + 1].name) > 0) {
+						temp_comp = company_array[j];
+						company_array[j] = company_array[j + 1];
+						company_array[j + 1] = temp_comp;
+					}
 				}
 			}
-		}
-		outstring(my_array, counter);
+		
+		outstring(company_array, counter);
+		delete[] company_array;
 		return EXIT_SUCCESS;
 	}
-	//@ Метод описывающий вывод результата на экран
+	// Метод описывающий вывод результата на экран
 	void outstring(company * my_company, int count) {
 		int max_size = 82;
 		int current_size = 0;
@@ -68,7 +67,6 @@
 			}
 			printf_s("%s", "|");
 			_itoa_s(my_company[i].products, buffer, 10);
-			#pragma warning( disable : 6054 )
 			current_size = strlen(buffer);
 			printf_s("%d", my_company[i].products);
 			while (current_size < 22) {
