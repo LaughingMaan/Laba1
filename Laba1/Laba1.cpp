@@ -52,7 +52,7 @@
 		for (int i = 0; i < count; i++) {
 
 			printf_s("%s", "|");
-			current_size = strlen(my_company[i].name);
+			current_size = (int)strlen(my_company[i].name);
 			printf_s("%s", my_company[i].name);
 			while (current_size < 9) {
 				printf_s("%s", " ");
@@ -60,7 +60,7 @@
 			}
 			printf_s("%s", "|");
 			_itoa_s(my_company[i].products, buffer, 10);
-			current_size = strlen(buffer);
+			current_size = (int)strlen(buffer);
 			printf_s("%d", my_company[i].products);
 			while (current_size < 22) {
 				printf_s("%s", " ");
@@ -68,15 +68,16 @@
 			}
 			printf_s("%s", "|");
 			_ultoa_s(my_company[i].year_money, buffer, 10);
-			current_size = strlen(buffer);
+			current_size = (int)strlen(buffer);
 			printf_s("%lu", my_company[i].year_money);
 			while (current_size < 27) {
 				printf_s("%s", " ");
 				current_size++;
 			}
 			printf_s("%s", "|");
-			_gcvt(my_company[i].market_part, 10, buffer);
-			current_size = strlen(buffer);
+			_gcvt_s(buffer, my_company[i].market_part, 10);
+			//_gcvt(my_company[i].market_part, 10, buffer); deprecated
+			current_size = (int)strlen(buffer);
 			printf_s("%5.1f%%", my_company[i].market_part);
 			while (current_size < 22) {
 				printf_s("%s", " ");
